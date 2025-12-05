@@ -1,0 +1,15 @@
+{
+  "name": "hw5",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start:auth": "node auth-server.js",
+    "start:error": "node error-logging-server.js",
+    "start:method": "node method-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
