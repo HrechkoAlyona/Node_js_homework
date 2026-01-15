@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Socket.io Chat</title>
+</head>
+<body>
+    <h2>Мой чат</h2>
+    <div id="messages" style="border: 1px solid #ccc; height: 200px; margin-bottom: 10px; padding: 10px; overflow-y: scroll;">
+        </div>
+    
+    <input id="messageInput" type="text" placeholder="Введите сообщение...">
+    <button id="sendBtn">Send Message</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script>
+        const socket = io(); // Инициализация соединения
+
+        const sendBtn = document.getElementById('sendBtn');
+        const input = document.getElementById('messageInput');
+        const messagesDiv = document.getElementById('messages');
+
+        // Когда нажали кнопку
+        sendBtn.onclick = () => {
+            const msg = input.value;
+            if (msg) {
+                // Отправляем сообщение на сервер (Задание 1.5)
+                socket.emit('chat message', msg);
+                input.value = '';
+            }
+        };
+
+        // Слушаем ответ от сервера (Задание 1.5)
+        socket.on('server response', (data) => {
+            const item = document.createElement('p');
+            item.textContent = data;
+            messagesDiv.appendChild(item);
+        });
+    </script>
+</body>
+</html>
